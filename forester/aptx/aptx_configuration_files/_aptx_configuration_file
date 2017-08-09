@@ -499,4 +499,10 @@ annotation_color: protease      0x009900
 annotation_color: transcription 0xAAAA00
 
 
+
+#  Additional options
+#  -------------
+width_branches_extent:                     5
+
+
 # END

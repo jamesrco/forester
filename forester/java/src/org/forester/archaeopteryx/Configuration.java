@@ -229,6 +229,7 @@ public final class Configuration {
     private boolean                         _midpoint_root                                         = false;
     private int                             _min_base_font_size                                    = 2;
     private double                          _min_confidence_value                                  = Options.MIN_CONFIDENCE_DEFAULT;
+    private int                             _width_branches_extent                                 = Options.WIDTH_BRANCHES_EXTENT_DEFAULT;
     private boolean                         _nh_parsing_replace_underscores                        = false;
     private NODE_LABEL_DIRECTION            _node_label_direction                                  = NODE_LABEL_DIRECTION.HORIZONTAL;
     private short                           _number_of_digits_after_comma_for_branch_length_values = AptxConstants.NUMBER_OF_DIGITS_AFTER_COMMA_FOR_BRANCH_LENGTH_VALUES_DEFAULT;
@@ -602,6 +603,10 @@ public final class Configuration {
 
     public void setMinConfidenceValue( final double min_confidence_value ) {
         _min_confidence_value = min_confidence_value;
+    }
+    
+    public void setWidthBranchesExtent( final int width_branches_extent ) {
+        _width_branches_extent = width_branches_extent;
     }
 
     public void setNodeLabelDirection( final NODE_LABEL_DIRECTION node_label_direction ) {
@@ -1138,6 +1143,13 @@ public final class Configuration {
             else {
                 ForesterUtil.printWarningMessage( AptxConstants.PRG_NAME, "illegal value [" + i
                                                   + "] for [branch_length_value_digits]" );
+            }
+        }
+        else if ( key.equals( "width_branches_extent" ) ) {
+            final String str = ( ( String ) st.nextElement() ).trim();
+            final int i = parseInt( str );
+            if ( i > 0 ) {
+                setWidthBranchesExtent( i );
             }
         }
         else if ( key.equals( "confidence_value_digits" ) ) {
@@ -1687,6 +1699,10 @@ public final class Configuration {
 
     double getMinConfidenceValue() {
         return _min_confidence_value;
+    }
+    
+    int getWidthBranchesExtent() {
+        return _width_branches_extent;
     }
 
     NODE_LABEL_DIRECTION getNodeLabelDirection() {
