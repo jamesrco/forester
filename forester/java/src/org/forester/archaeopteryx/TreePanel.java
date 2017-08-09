@@ -2285,7 +2285,11 @@ public final class TreePanel extends JPanel implements ActionListener, MouseWhee
                     }
                 }
                 else {
-                    drawRectFilled( x1a, y2 - ( w / 2 ), x2a - x1a, w, g );
+                    // drawRectFilled( x1a, y2 - ( w / 2 ), x2a - x1a, w, g );
+                    // Modifications below to try and get the boxes to be smaller
+                    drawLine( x1a, y2, x2a, y2, g ); // Keep the line because we still want it
+                    drawRectFilled( x2a - getSize().width * 0.05, y2 - ( w / 2 ), getSize().width * 0.05, w, g ); 
+                    // But draw a smaller rectangle
                 }
             }
             if ( ( getPhylogenyGraphicsType() == PHYLOGENY_GRAPHICS_TYPE.ROUNDED ) ) {
