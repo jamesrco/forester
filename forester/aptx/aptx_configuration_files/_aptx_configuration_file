@@ -147,7 +147,14 @@ native_ui: ?
 #  against the XSD Schema (see: http://www.phyloxml.org/),
 #  with:
 #  'validate_against_phyloxml_xsd_schema: true'
-
+#
+#  Additional CEG beta options
+#  -------------------------
+#  To specify a uniform horizontal extent for the branch widths, when branch widths are used:
+#  'fix_width_branch_extent', possible values: 'yes'/'no'
+#
+#  If 'fix_width_branch_extent' is set to 'yes', specify the horizontal extent to be used when plotting:
+#  'width_branches_extent' (an integer)
 
 min_confidence_value:                      0.0
 font_family:                               Arial_Unicode_MS,Dialog,SansSerif,Sans,Arial,Helvetica
@@ -190,11 +197,7 @@ replace_underscores_in_nh_parsing:         no
 taxonomy_extraction_in_nh_parsing:         no
 #  phyloXML parsing:
 validate_against_phyloxml_xsd_schema:      true
-
-
-
-#  Additional options
-#  -------------
+#  Additional CEG beta options:
 fix_width_branch_extent:                   yes
 width_branches_extent:                     5
 
