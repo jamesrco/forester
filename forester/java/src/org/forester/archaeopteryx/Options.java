@@ -102,6 +102,8 @@ final public class Options {
     private boolean                           _match_whole_terms_only;
     private boolean                           _search_with_regex;
     private double                            _min_confidence_value;
+    private boolean                           _fix_width_branch_extent;
+    private int                               _width_branches_extent;
     private NH_CONVERSION_SUPPORT_VALUE_STYLE _nh_conversion_support_value_style;
     private boolean                           _nh_parsing_replace_underscores;
     private NODE_LABEL_DIRECTION              _node_label_direction;
@@ -197,6 +199,8 @@ final public class Options {
         _internal_number_are_confidence_for_nh_parsing = false;
         _show_scale = false;
         _antialias_screen = true;
+        _fix_width_branch_extent = false;
+        _width_branches_extent = 5;
         _antialias_print = true;
         _graphics_export_visible_only = false;
         _editable = true;
@@ -320,6 +324,14 @@ final public class Options {
     final boolean isAntialiasScreen() {
         return _antialias_screen;
     }
+    
+    final public boolean isFixWidthBranchExtent() {
+        return _fix_width_branch_extent;
+    }
+    
+    final int getWidthBranchesExtent() {
+        return _width_branches_extent;
+    }
 
     final boolean isBackgroundColorGradient() {
         return _background_color_gradient;
@@ -411,6 +423,14 @@ final public class Options {
 
     final void setAntialiasScreen( final boolean antialias_screen ) {
         _antialias_screen = antialias_screen;
+    }
+
+    final void setFixWidthBranchExtent( final boolean fix_width_branch_extent ) {
+        _fix_width_branch_extent = fix_width_branch_extent;
+    }
+    
+    final void setWidthBranchesExtent( final int width_branches_extent ) {
+        _width_branches_extent = width_branches_extent;
     }
 
     final void setBaseFont( final Font base_font ) {
@@ -589,6 +609,11 @@ final public class Options {
             instance.setRightLineUpDomains( configuration.isRightLineUpDomains() );
             instance.setLineUpRendarableNodeData( configuration.isLineUpRendarableNodeData() );
             instance.setAllowErrorsInDistanceToParent( false );
+            instance.setFixWidthBranchExtent( configuration.isFixWidthBranchExtent() );
+            if ( configuration.getWidthBranchesExtent() >= 0 ) {
+                instance.setWidthBranchesExtent( configuration
+                        .getWidthBranchesExtent() );
+            }
         }
         return instance;
     }

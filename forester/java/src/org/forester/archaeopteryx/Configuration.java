@@ -229,7 +229,8 @@ public final class Configuration {
     private boolean                         _midpoint_root                                         = false;
     private int                             _min_base_font_size                                    = 2;
     private double                          _min_confidence_value                                  = Options.MIN_CONFIDENCE_DEFAULT;
-    private int                             _width_branches_extent                                 = Options.WIDTH_BRANCHES_EXTENT_DEFAULT;
+    private boolean                         _fix_width_branch_extent                               = false;
+    private int                             _width_branches_extent                                 = 50;
     private boolean                         _nh_parsing_replace_underscores                        = false;
     private NODE_LABEL_DIRECTION            _node_label_direction                                  = NODE_LABEL_DIRECTION.HORIZONTAL;
     private short                           _number_of_digits_after_comma_for_branch_length_values = AptxConstants.NUMBER_OF_DIGITS_AFTER_COMMA_FOR_BRANCH_LENGTH_VALUES_DEFAULT;
@@ -464,6 +465,14 @@ public final class Configuration {
     public boolean isShowDomainLabels() {
         return _show_domain_labels;
     }
+    
+    public boolean isFixWidthBranchExtent() {
+        return _fix_width_branch_extent;
+    }
+    
+    public int getWidthBranchesExtent() {
+        return _width_branches_extent;
+    }
 
     public void putDisplayColors( final String key, final Color color ) {
         getDisplayColors().put( key, color );
@@ -603,6 +612,10 @@ public final class Configuration {
 
     public void setMinConfidenceValue( final double min_confidence_value ) {
         _min_confidence_value = min_confidence_value;
+    }
+    
+    public void setFixWidthBranchExtent( final boolean fix_width_branch_extent ) {
+        _fix_width_branch_extent = fix_width_branch_extent;
     }
     
     public void setWidthBranchesExtent( final int width_branches_extent ) {
@@ -1144,6 +1157,9 @@ public final class Configuration {
                 ForesterUtil.printWarningMessage( AptxConstants.PRG_NAME, "illegal value [" + i
                                                   + "] for [branch_length_value_digits]" );
             }
+        }
+        else if ( key.equals( "fix_width_branch_extent" ) ) {
+            setFixWidthBranchExtent( parseBoolean( ( String ) st.nextElement() ) );
         }
         else if ( key.equals( "width_branches_extent" ) ) {
             final String str = ( ( String ) st.nextElement() ).trim();
@@ -1701,10 +1717,6 @@ public final class Configuration {
         return _min_confidence_value;
     }
     
-    int getWidthBranchesExtent() {
-        return _width_branches_extent;
-    }
-
     NODE_LABEL_DIRECTION getNodeLabelDirection() {
         return _node_label_direction;
     }

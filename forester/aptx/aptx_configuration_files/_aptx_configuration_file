@@ -192,6 +192,14 @@ taxonomy_extraction_in_nh_parsing:         no
 validate_against_phyloxml_xsd_schema:      true
 
 
+
+#  Additional options
+#  -------------
+fix_width_branch_extent:                   yes
+width_branches_extent:                     5
+
+
+
 #  Checkbox Display Selection
 #  --------------------------
 #  This is used to select which checkboxes to display
@@ -498,11 +506,6 @@ annotation_color: kinase        0xFF00FF
 annotation_color: protease      0x009900
 annotation_color: transcription 0xAAAA00
 
-
-
-#  Additional options
-#  -------------
-width_branches_extent:                     5
 
 
 # END
